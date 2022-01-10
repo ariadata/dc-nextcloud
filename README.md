@@ -29,7 +29,7 @@ docker-compose up -d
 >
 > Config SSL Part
 
-#### 6- goto : `https://Your-FQDN/`
+#### 5- goto : `https://Your-FQDN/`
 > set default user/pass for admin
 >
 > unckeck `Install recommended apps`

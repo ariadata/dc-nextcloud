@@ -1,0 +1,40 @@
+version: "3"
+
+networks:
+  nginx-proxy-manager:
+    external: true
+  nextcloud-network:
+    driver: bridge
+
+services:
+  nextcloud:
+    image: nextcloud
+    restart: on-failure
+#    ports:
+#      - 80:80
+    depends_on:
+      - mysql
+    volumes:
+      - ./data:/var/www/html
+    environment:
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=CHANE_ME_A
+      - MYSQL_HOST=mysql
+    networks:
+      - nginx-proxy-manager
+      - nextcloud-network
+      
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    environment:
+      - MYSQL_ROOT_PASSWORD=CHANE_ME_B
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=CHANE_ME_A
+      - MYSQL_DATABASE=nextcloud
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - nextcloud-network

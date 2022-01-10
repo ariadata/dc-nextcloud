@@ -18,15 +18,7 @@ git clone https://github.com/ariadata/dc-nextcloud.git && cd dc-nextcloud && rm 
 ```sh
 docker-compose up -d
 ```
-#### 4- according to [this article](https://www.the-digital-life.com/nextcloud-nginx-proxy-manager-in-10-minutes/) , edit config file for `https` using:
-```sh
-sudo nano ~/dc-nextcloud/data/config/config.php
-```
-add this line to end element of php array :
-```sh
-'overwriteprotocol' => 'https'
-```
-#### 5- Goto Nginx-Proxy-Manager admin panel and add this stack as proxy-host :
+#### 4- Goto Nginx-Proxy-Manager admin panel and add this stack as proxy-host :
 > Domain : `Your-FQDN` you must pointed it before!
 > 
 > Schema : `http`
@@ -40,9 +32,18 @@ add this line to end element of php array :
 #### 6- goto : `https://Your-FQDN/`
 > set default user/pass for admin
 >
-> unckeck install recommended apps
+> unckeck `Install recommended apps`
 >
 > click finish setup
+
+#### 6- according to [this article](https://www.the-digital-life.com/nextcloud-nginx-proxy-manager-in-10-minutes/) , edit config file for `https` using:
+```sh
+sudo nano ~/dc-nextcloud/data/config/config.php
+```
+add this line to end element of php array :
+```sh
+'overwriteprotocol' => 'https'
+```
 
 Done!
 
